@@ -1,0 +1,14 @@
+{
+  "name": "crypto-tip",
+  "version": "1.0.0",
+  "description": "A module to enable any website to get ETH tips from Metamask ",
+  "main": "index.js",
+  "repository": "https://github.com/fhuel/crypto-tip",
+  "author": "Manuele Capacci",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {},
+  "peerDependencies": {
+    "web3": "^1.6.0"
+  }
+}
