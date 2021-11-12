@@ -1,0 +1,159 @@
+/* taken from https://rsms.me/inter/ */
+@import url("https://rsms.me/inter/inter.css");
+html {
+  font-family: "Inter", sans-serif;
+}
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", sans-serif;
+  }
+}
+
+/* setting up some default layouts and colors with CSS variables */
+:root {
+  --page-back: #ffffff;
+  --page-fore: #111118;
+  --page-font-size: 24px;
+
+  --section-pad: 120px;
+  --section-border: #f8f8f8;
+  --section-height: 100vh;
+
+  --form-width: 240px;
+  --form-back: #111118;
+  --form-fore: #ffffff;
+  --form-border: #66666a;
+}
+
+/* dark mode css variables! */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page-back: #111118;
+    --page-fore: #ffffff;
+
+    --section-border: #33333a;
+
+    --form-back: #ffffff;
+    --form-fore: #111118;
+    --form-border: #dddddd;
+  }
+}
+
+/* mobile friendly layout */
+@media (max-width: 640px) {
+  :root {
+    --page-font-size: 16px;
+
+    --section-pad: 24px;
+    --section-height: 100vw;
+
+    --form-width: 200px;
+  }
+}
+
+/* for fading in the form */
+@keyframes fadein {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+    transform: translate(0, 24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+#crypto-tip,
+#crypto-tip * {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+#crypto-tip {
+  font-family: "Inter var";
+  font-size: var(--page-font-size);
+  font-variation-settings: "wght" 300;
+  line-height: 1.25;
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  max-width: var(--form-width);
+
+  background: var(--form-back);
+  color: var(--form-fore);
+  padding: 24px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+  /* display: none; */
+  animation: fadein 0.4s 0.8s ease-in-out both;
+}
+
+#crypto-tip form {
+  display: grid;
+  grid-gap: 16px 8px;
+  grid-template-areas: "label label" "input eth" "button button";
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+#crypto-tip form.has-eth {
+  display: grid;
+  animation: fadein 0.4s 0.8s ease-in-out both;
+}
+
+#crypto-tip form label {
+  grid-area: label;
+
+  display: block;
+  font-size: 16px;
+}
+
+#crypto-tip form input {
+  font: inherit;
+
+  grid-area: input;
+
+  appearance: none;
+  width: 100%;
+  border: none;
+  padding: 8px;
+
+  font-variation-settings: "wght" 600;
+  text-align: right;
+
+  background: var(--form-back);
+  color: var(--form-fore);
+  color: red;
+  border: 1px solid var(--form-border);
+  transition: border-color 0.2s ease-in-out;
+}
+
+#crypto-tip form input:focus {
+  border: 1px solid var(--form-fore);
+  outline: none;
+}
+
+#crypto-tip form span {
+  grid-area: eth;
+}
+
+#crypto-tip form button {
+  grid-area: button;
+  appearance: none;
+  border: none;
+  background: var(--form-fore);
+  color: var(--form-back);
+  font: inherit;
+  padding: 8px;
+  font-size: 16px;
+}
